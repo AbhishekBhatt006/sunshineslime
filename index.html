@@ -1,53 +1,58 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sunshine Slimes — Small Batch Slime</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    :root { --ink:#17151d; --cream:#fffdf9; --pink:#ff709d; --lime:#dff55a; --purple:#7656e8; --orange:#ffb548; --line:rgba(23,21,29,.12); }
-    * { box-sizing:border-box; } body { margin:0; color:var(--ink); background:var(--cream); font-family:Outfit, sans-serif; }
-    .topline { height:35px; display:flex; align-items:center; justify-content:center; background:var(--lime); font:500 11px/1 "DM Mono",monospace; letter-spacing:.08em; text-transform:uppercase; }
-    header { max-width:1240px; margin:auto; height:86px; padding:0 28px; display:flex; align-items:center; justify-content:space-between; }
-    .logo { display:flex; align-items:center; gap:8px; font-size:22px; font-weight:800; letter-spacing:-.07em; text-decoration:none; color:var(--ink); } .logo:before { content:""; width:21px; height:21px; display:block; border-radius:50% 50% 47% 53% / 46% 53% 47% 54%; background:linear-gradient(145deg,#ffe15a 0 35%,#ff7ea4 36% 66%,#8c6bf1 67%); box-shadow:2px 2px 0 var(--ink); } .logo i { color:var(--pink); font-style:normal; }
-    nav { display:flex; gap:28px; } nav a { color:var(--ink); text-decoration:none; font-size:15px; }
-    .cart { border:1.5px solid var(--ink); border-radius:30px; padding:10px 16px; background:transparent; font-family:inherit; font-size:14px; cursor:pointer; }
-    .cart b { display:inline-grid; place-items:center; margin-left:7px; width:19px; height:19px; background:var(--pink); border-radius:50%; font:500 11px "DM Mono"; }
-    .hero { max-width:1240px; min-height:510px; margin:0 auto 76px; padding:70px 28px 40px; position:relative; overflow:hidden; background:linear-gradient(120deg,#8d6cf0 0%,#a689f0 50%,#a3d7d2 100%); border-radius:26px; }
-    .hero:before { content:""; position:absolute; inset:auto -9% -46% auto; width:620px; height:430px; background:#f2ffb8; border-radius:46% 54% 66% 34% / 44% 40% 60% 56%; transform:rotate(-13deg); opacity:.95; }
-    .hero:after { content:""; position:absolute; top:-180px; right:26%; width:420px; height:420px; border-radius:50%; background:rgba(255,255,255,.14); filter:blur(2px); }
-    .eyebrow { position:relative; z-index:1; display:inline-flex; gap:8px; align-items:center; padding:8px 11px; border-radius:20px; background:var(--cream); font:500 10px "DM Mono"; text-transform:uppercase; letter-spacing:.08em; }
-    h1 { position:relative; z-index:1; font-size:clamp(59px,8vw,105px); line-height:.84; letter-spacing:-.085em; max-width:650px; margin:22px 0 20px; font-weight:800; }
-    .hero p { position:relative; z-index:1; max-width:390px; font-size:18px; line-height:1.4; margin-bottom:29px; }
-    .button { position:relative; z-index:1; display:inline-flex; gap:10px; align-items:center; padding:15px 21px; border:1.5px solid var(--ink); border-radius:28px; background:var(--orange); color:var(--ink); text-decoration:none; font-size:15px; box-shadow:4px 4px 0 var(--ink); transition:transform .2s,box-shadow .2s; }
-    .button:hover { transform:translate(3px,3px); box-shadow:1px 1px 0 var(--ink); }
-    .slime-jar { position:absolute; z-index:1; width:230px; height:267px; right:16%; bottom:41px; filter:drop-shadow(18px 21px 8px rgba(50,24,100,.16)); transform:rotate(7deg); }
-    .lid { position:absolute; left:10px; top:1px; width:211px; height:42px; border:3px solid var(--ink); border-radius:15px 15px 7px 7px; background:#ff9eb8; } .jar-body { position:absolute; top:35px; width:230px; height:226px; border:3px solid var(--ink); border-radius:21px 21px 36px 36px; overflow:hidden; background:#e8f869; }
-    .goo { position:absolute; width:260px; height:180px; bottom:-51px; left:-20px; background:#ff76a2; border-radius:54% 46% 35% 65% / 56% 35% 65% 44%; transform:rotate(-7deg); } .bubble { position:absolute; background:#ffd5e0; border-radius:50%; opacity:.8; } .bubble.one{width:22px;height:22px;left:45px;top:70px}.bubble.two{width:12px;height:12px;right:35px;top:82px}.bubble.three{width:29px;height:29px;right:74px;top:127px}.label { position:absolute; z-index:2; top:109px; left:25px; width:180px; height:81px; display:grid; place-items:center; border:2px solid var(--ink); border-radius:12px; background:#fff9e8; text-align:center; font-size:28px; letter-spacing:-.09em; transform:rotate(-3deg); }.label small { display:block; font:500 8px "DM Mono"; letter-spacing:.12em; }
-    .spark { position:absolute; z-index:2; font-size:39px; }.s1{right:8%;top:65px}.s2{right:40%;bottom:43px;font-size:25px}.s3{right:3%;bottom:85px;font-size:31px}
-    main { max-width:1240px; padding:0 28px; margin:auto; } .section-head { display:flex; justify-content:space-between; align-items:end; margin-bottom:25px; } h2 { font-size:42px; letter-spacing:-.065em; line-height:1; margin:0; }.section-head a { color:var(--ink); font:500 12px "DM Mono"; text-transform:uppercase; letter-spacing:.07em; }
-    .products { display:grid; grid-template-columns:repeat(4,1fr); gap:17px; } .product { min-width:0; }.product-art { height:225px; display:grid; place-items:center; border-radius:18px; overflow:hidden; position:relative; } .product-art.p1{background:#fb9aba}.p2{background:#e7f863}.p3{background:#a38cf0}.p4{background:#ffca73}
-    .mini-jar { width:116px;height:137px; position:relative; transform:rotate(-4deg); filter:drop-shadow(7px 9px 5px rgba(0,0,0,.16)); }.mini-jar .lid{left:5px;width:106px;height:24px;border-width:2px;border-radius:8px 8px 4px 4px;background:#f7f2e4}.mini-jar .jar-body{top:20px;width:116px;height:116px;border-width:2px;border-radius:11px 11px 20px 20px}.mini-jar .goo{width:140px;height:90px}.mini-jar .label{top:52px;left:13px;width:89px;height:40px;border-width:1.5px;border-radius:6px;font-size:14px}.mini-jar .label small{font-size:5px}.p1 .jar-body{background:#f1ffb6}.p1 .goo{background:#8c55e8}.p2 .jar-body{background:#d18ef5}.p2 .goo{background:#f5d64d}.p3 .jar-body{background:#ffad4d}.p3 .goo{background:#f9579b}.p4 .jar-body{background:#8bdbcc}.p4 .goo{background:#e76c9d}
-    .product-info { padding:14px 2px 4px; position:relative; }.product h3{font-size:18px;margin:0 0 4px;letter-spacing:-.035em}.meta{font:500 10px "DM Mono";text-transform:uppercase;letter-spacing:.04em;opacity:.65}.price{position:absolute;right:0;top:14px;font-size:17px}.quick-add { margin-top:13px; width:100%; padding:9px; border:1.5px solid var(--ink); border-radius:22px; background:transparent; font-family:inherit; font-size:13px; cursor:pointer; transition:.2s; }.quick-add:hover{background:var(--ink);color:white}
-    .why { margin:87px 0 70px; padding:35px 39px; display:grid; grid-template-columns:1.1fr 1fr 1fr 1fr; gap:24px; background:#1d1a23; color:var(--cream); border-radius:21px; }.why h2{font-size:37px}.benefit{border-left:1px solid rgba(255,255,255,.25);padding-left:20px}.benefit b{display:block;margin-bottom:7px;font-size:17px}.benefit span{font:400 11px/1.5 "DM Mono";opacity:.72}
-    footer{border-top:1px solid var(--line);padding:30px 28px 43px;display:flex;max-width:1240px;margin:auto;justify-content:space-between;font:400 11px "DM Mono";text-transform:uppercase;letter-spacing:.05em}.toast{position:fixed;bottom:25px;left:50%;z-index:5;transform:translate(-50%,90px);opacity:0;background:var(--ink);color:white;padding:13px 19px;border-radius:22px;transition:.3s;font-size:14px}.toast.show{transform:translate(-50%,0);opacity:1}
-    @media(max-width:760px){header{height:72px;padding:0 18px}nav{display:none}.hero{border-radius:0;margin:0 0 52px;min-height:555px;padding:52px 22px}.slime-jar{right:7%;bottom:18px;transform:scale(.8) rotate(7deg);transform-origin:bottom right}.hero p{font-size:16px;max-width:300px}.products{grid-template-columns:repeat(2,1fr);gap:20px 12px}.product-art{height:176px}.why{margin:58px 0 48px;padding:28px;grid-template-columns:1fr 1fr}.why h2{grid-column:span 2}.section-head h2{font-size:35px}main{padding:0 18px}.section-head a{font-size:9px}footer{padding:24px 18px;gap:18px;flex-direction:column}.topline{font-size:9px}.spark{display:none}}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sunshine Slime | Colorful & Fun Slimes</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <div class="topline">Free shipping on orders over $45 · Made fresh every Wednesday</div>
-  <header><a class="logo" href="#">sunshine<i>slimes</i></a><nav><a href="#shop">Shop</a><a href="#about">Our slime</a><a href="#">Slime care</a></nav><button class="cart">Bag <b id="count">0</b></button></header>
-  <section class="hero"><span class="eyebrow">✦ New drop · September</span><h1>Get your hands<br>on happy.</h1><p>Handmade, wildly scented slime for the desk, the daydream, and the dopamine hit.</p><a class="button" href="#shop">Shop the drop <span>→</span></a><div class="slime-jar"><div class="lid"></div><div class="jar-body"><div class="goo"></div><i class="bubble one"></i><i class="bubble two"></i><i class="bubble three"></i></div><div class="label">sunshine<small>strawberry cloud</small></div></div><span class="spark s1">✦</span><span class="spark s2">✦</span><span class="spark s3">✦</span></section>
-  <main><section id="shop"><div class="section-head"><h2>Meet the squeezables</h2><a href="#shop">Shop all slime →</a></div><div class="products">
-    <article class="product"><div class="product-art p1"><div class="mini-jar"><div class="lid"></div><div class="jar-body"><div class="goo"></div></div><div class="label">berry pop<small>butter slime</small></div></div></div><div class="product-info"><h3>Berry Pop</h3><span class="meta">Butter · Strawberry</span><span class="price">$15</span><button class="quick-add" data-name="Berry Pop">Add to bag</button></div></article>
-    <article class="product"><div class="product-art p2"><div class="mini-jar"><div class="lid"></div><div class="jar-body"><div class="goo"></div></div><div class="label">lemon loop<small>cloud slime</small></div></div></div><div class="product-info"><h3>Lemon Loop</h3><span class="meta">Cloud · Citrus</span><span class="price">$16</span><button class="quick-add" data-name="Lemon Loop">Add to bag</button></div></article>
-    <article class="product"><div class="product-art p3"><div class="mini-jar"><div class="lid"></div><div class="jar-body"><div class="goo"></div></div><div class="label">pixel punch<small>clear slime</small></div></div></div><div class="product-info"><h3>Pixel Punch</h3><span class="meta">Clear · Peach</span><span class="price">$14</span><button class="quick-add" data-name="Pixel Punch">Add to bag</button></div></article>
-    <article class="product"><div class="product-art p4"><div class="mini-jar"><div class="lid"></div><div class="jar-body"><div class="goo"></div></div><div class="label">mint chip<small>icee slime</small></div></div></div><div class="product-info"><h3>Mint Chip</h3><span class="meta">Icee · Vanilla</span><span class="price">$16</span><button class="quick-add" data-name="Mint Chip">Add to bag</button></div></article>
-  </div></section><section class="why" id="about"><h2>Good goo,<br>great mood.</h2><div class="benefit"><b>Small batch</b><span>Mixed by hand in our tiny Toronto slime kitchen.</span></div><div class="benefit"><b>Feels just right</b><span>Tested, stretched, poked, and approved by real hands.</span></div><div class="benefit"><b>Made to play</b><span>Non-toxic ingredients and packed with a little joy.</span></div></section></main>
-  <footer><span>© 2024 Sunshine Slimes</span><span>Instagram · TikTok · hello@sunshineslimes.com</span></footer><div class="toast" id="toast">Added to your bag!</div>
-  <script>let count=0;const countEl=document.querySelector('#count'),toast=document.querySelector('#toast');document.querySelectorAll('.quick-add').forEach(b=>b.addEventListener('click',()=>{count++;countEl.textContent=count;b.textContent='Added ✓';toast.textContent=`${b.dataset.name} added to your bag!`;toast.classList.add('show');setTimeout(()=>{b.textContent='Add to bag';toast.classList.remove('show')},1700)}));</script>
+    <header>
+        <nav>
+            <div class="logo">Sunshine Slime</div>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#products">Products</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Satisfying Slimes for Everyone!</h1>
+            <p>Experience the ultimate sensory joy with our handmade, colorful slimes.</p>
+            <a href="#products" class="btn">Shop Now</a>
+        </div>
+    </section>
+
+    <section id="products" class="products">
+        <h2>Our Best Sellers</h2>
+        <div class="product-grid" id="product-grid">
+            <!-- Products will be injected by JavaScript -->
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <h2>About Us</h2>
+        <p>At Sunshine Slime, we believe in spreading happiness through texture and color. Each batch is handcrafted with love and the finest ingredients.</p>
+    </section>
+
+    <section id="contact" class="contact">
+        <h2>Contact Us</h2>
+        <form id="contact-form">
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email" required>
+            <textarea placeholder="Your Message" rows="5" required></textarea>
+            <button type="submit" class="btn">Send Message</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Sunshine Slime. All rights reserved.</p>
+    </footer>
+
+    <script src="js/script.js"></script>
 </body>
 </html>
